@@ -39,6 +39,7 @@
     ctrl.canPageForward = canPageForward;
     ctrl.canPageBack = canPageBack;
     ctrl.refreshIndex = refreshIndex;
+    ctrl.incrementSelectedIndex = incrementSelectedIndex;
 
     init();
 
@@ -51,13 +52,12 @@
     }
 
     function keydown (event) {
-      var newIndex;
       switch (event.keyCode) {
         case $mdConstant.KEY_CODE.LEFT_ARROW:
-          handleArrowKey(-1);
+          incrementSelectedIndex(-1, true);
           break;
         case $mdConstant.KEY_CODE.RIGHT_ARROW:
-          handleArrowKey(1);
+          incrementSelectedIndex(1, true);
           break;
         case $mdConstant.KEY_CODE.SPACE:
         case $mdConstant.KEY_CODE.ENTER:
@@ -66,12 +66,18 @@
           break;
       }
       ctrl.lastClick = false;
-      function handleArrowKey (inc) {
-        event.preventDefault();
-        for (newIndex = ctrl.focusIndex + inc;
-             ctrl.tabs[newIndex] && ctrl.tabs[newIndex].scope.disabled;
-             newIndex += inc) {}
-        if (ctrl.tabs[newIndex]) ctrl.focusIndex = newIndex;
+    }
+
+    function incrementSelectedIndex (inc, focus) {
+      var newIndex,
+          index = focus ? ctrl.focusIndex : $scope.selectedIndex;
+      event.preventDefault();
+      for (newIndex = index + inc;
+           ctrl.tabs[newIndex] && ctrl.tabs[newIndex].scope.disabled;
+           newIndex += inc) {}
+      if (ctrl.tabs[newIndex]) {
+        if (focus) ctrl.focusIndex = newIndex;
+        else $scope.selectedIndex = newIndex;
       }
     }
 
@@ -140,7 +146,6 @@
       $scope.selectedIndex = getNearestSafeIndex(newValue);
       ctrl.lastSelectedIndex = oldValue;
       updateInkBarStyles();
-      elements.canvas.focus();
     }
 
     function updateInkBarStyles () {
