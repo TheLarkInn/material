@@ -125,7 +125,6 @@
               role="tablist">\
             <md-pagination-wrapper\
                 md-tab-scroll="$mdTabsCtrl.scroll($event)">\
-              <md-ink-bar ng-hide="noInkBar"></md-ink-bar>\
               <md-tab-item\
                   tabindex="-1"\
                   class="md-tab"\
@@ -143,6 +142,7 @@
                   md-swipe-left="$mdTabsCtrl.nextPage()"\
                   md-swipe-right="$mdTabsCtrl.previousPage()"\
                   md-label-template="tab.label"></md-tab-item>\
+              <md-ink-bar ng-hide="noInkBar"></md-ink-bar>\
             </md-pagination-wrapper>\
             <div class="visually-hidden">\
               <md-dummy-tab\
