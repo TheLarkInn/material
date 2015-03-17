@@ -98,6 +98,9 @@
           <md-tab-data ng-transclude></md-tab-data>\
           <md-prev-button\
               tabindex="-1"\
+              role="button"\
+              aria-label="Previous Page"\
+              aria-disabled="{{!$mdTabsCtrl.canPageBack()}}"\
               ng-class="{ \'md-disabled\': !$mdTabsCtrl.canPageBack() }"\
               ng-if="$mdTabsCtrl.shouldPaginate()"\
               ng-click="$mdTabsCtrl.previousPage()">\
@@ -105,6 +108,9 @@
           </md-prev-button>\
           <md-next-button\
               tabindex="-1"\
+              role="button"\
+              aria-label="Next Page"\
+              aria-disabled="{{!$mdTabsCtrl.canPageForward()}}"\
               ng-class="{ \'md-disabled\': !$mdTabsCtrl.canPageForward() }"\
               ng-if="$mdTabsCtrl.shouldPaginate()"\
               ng-click="$mdTabsCtrl.nextPage()">\
@@ -124,13 +130,16 @@
                   tabindex="-1"\
                   class="md-tab"\
                   style="max-width: {{ tabWidth ? tabWidth + \'px\' : \'none\' }}"\
+                  role="tab"\
+                  aria-selected="{{tab.isActive()}}"\
+                  aria-disabled="{{tab.scope.disabled}}"\
+                  aria-controls="tab-content-{{tab.id}}"\
                   ng-repeat="tab in $mdTabsCtrl.tabs"\
-                  aria-labelledby="tab-item-{{tab.id}}"\
+                  ng-click="$mdTabsCtrl.select(tab.getIndex())"\
                   ng-class="{ \'md-active\': tab.isActive(),\
                       \'md-focus\': tab.hasFocus(),\
                       \'md-disabled\': tab.scope.disabled }"\
                   ng-disabled="tab.scope.disabled"\
-                  ng-click="$mdTabsCtrl.select(tab.getIndex())"\
                   md-swipe-left="$mdTabsCtrl.nextPage()"\
                   md-swipe-right="$mdTabsCtrl.previousPage()"\
                   md-label-template="tab.label"></md-tab-item>\
