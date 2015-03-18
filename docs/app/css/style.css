@@ -198,20 +198,23 @@ code:not(.highlight) {
   text-transform: none;
 }
 .md-button-toggle .md-toggle-icon {
-  background: transparent url(img/icons/list_control_down.png) no-repeat center center;
-  background-size: 100% auto;
   display: inline-block;
   height: 24px;
   margin: auto 0 auto auto;
   speak: none;
   width: 24px;
+  transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
   transition: transform 0.3s ease-in-out;
   -webkit-transition: -webkit-transform 0.3s ease-in-out;
 }
 .md-button-toggle .md-toggle-icon.toggled {
-  transform: rotate(180deg);
-  -webkit-transform: rotate(180deg);
+  transform: rotate(0deg);
+  -webkit-transform: rotate(0deg);
 }
+  .md-button-toggle .md-toggle-icon md-icon {
+    display: block;
+  }
 /* End Docs Menu */
 
 .docs-logo:focus {

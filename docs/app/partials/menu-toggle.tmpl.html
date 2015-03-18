@@ -5,7 +5,9 @@
   aria-expanded="{{isOpen()}}">
   {{section.name}}
   <span aria-hidden="true" class="md-toggle-icon"
-  ng-class="{'toggled' : isOpen()}"></span>
+  ng-class="{'toggled' : isOpen()}">
+    <md-icon md-svg-src="toggle-arrow"></md-icon>
+  </span>
   <span class="visually-hidden">
     Toggle {{isOpen()? 'expanded' : 'collapsed'}}
   </span>
