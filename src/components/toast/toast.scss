@@ -106,7 +106,7 @@ md-toast {
       top: $toast-margin;
     }
 
-    /* 
+    /*
      * When the toast doesn't take up the whole screen,
      * make it rotate when the user swipes it away
      */
@@ -126,5 +126,11 @@ md-toast {
         }
       }
     }
+  }
+}
+
+@media screen and (-ms-high-contrast: active) {
+  md-toast {
+    border: 1px solid #fff;
   }
 }
